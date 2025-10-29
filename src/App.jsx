@@ -22,7 +22,7 @@ function App() {
   }, [isLoggedIn]);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/React-app" >
       {/* Navbar visible on all pages */}
       <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
 
