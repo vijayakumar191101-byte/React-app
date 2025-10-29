@@ -5,17 +5,18 @@ import Login from "./components/Login&Signup/Login";
 import Signup from "./components/Login&Signup/signup";
 import Home from "./components/pages/Home";
 import Navbar from "./components/Navbar/Navbar";
+import PhoneLogin from "./components/Login&Signup/PhoneLogin";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // Load login state from localStorage
+  // Load login state
   useEffect(() => {
     const savedLogin = localStorage.getItem("isLoggedIn");
     if (savedLogin === "true") setIsLoggedIn(true);
   }, []);
 
-  // Save login state to localStorage
+  // Save login state
   useEffect(() => {
     localStorage.setItem("isLoggedIn", isLoggedIn);
   }, [isLoggedIn]);
@@ -26,10 +27,8 @@ function App() {
       <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
 
       <Routes>
-        {/* Dashboard - default landing */}
         <Route path="/" element={<Dashboard />} />
 
-        {/* Login route */}
         <Route
           path="/login"
           element={
@@ -41,10 +40,9 @@ function App() {
           }
         />
 
-        {/* Signup route */}
         <Route path="/signup" element={<Signup />} />
+        <Route path="/phone-login" element={<PhoneLogin />} />
 
-        {/* Home route (protected) */}
         <Route
           path="/home"
           element={
@@ -56,7 +54,6 @@ function App() {
           }
         />
 
-        {/* Catch-all route (optional) */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
